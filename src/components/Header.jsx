@@ -5,7 +5,7 @@ export default function Header() {
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          MyProject
+          MovieApp
         </NavLink>
         <button
           className="navbar-toggler"
@@ -20,8 +20,8 @@ export default function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <NavLink className="nav-link" to="/about">
-              About
+            <NavLink className="nav-link" to="/movies">
+              Movies
             </NavLink>
           </div>
         </div>
