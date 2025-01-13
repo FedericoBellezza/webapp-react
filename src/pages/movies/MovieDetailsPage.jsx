@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [reviews, setReviews] = useState(null);
+  const movieId = useParams().id;
 
   useEffect(() => {
-    const url = "http://localhost:3000/movies/3";
+    console.log(movieId);
+
+    const url = `http://localhost:3000/movies/${movieId}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -22,7 +26,7 @@ export default function MovieDetailsPage() {
         {movie && <li>Title: {movie.title}</li>}
         {movie && <li>Director: {movie.director}</li>}
         {movie && <li>Genre: {movie.genre}</li>}
-        {movie && <li>Year: {movie.year}</li>}
+        {movie && <li>Year: {movie.release_year}</li>}
         {movie && <li>Abstract: {movie.abstract}</li>}
       </ul>
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { data } from "react-router-dom";
+import { data, Link } from "react-router-dom";
 
 export default function MovieListPage() {
   const [movies, setMovies] = useState([]);
@@ -20,7 +20,9 @@ export default function MovieListPage() {
       <h1>Movie list page</h1>
       <ul className="mt-3">
         {movies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <li key={movie.id}>
+            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+          </li>
         ))}
       </ul>
     </div>
