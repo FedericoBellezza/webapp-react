@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
+  const [reviews, setReviews] = useState(null);
 
   useEffect(() => {
     const url = "http://localhost:3000/movies/3";
@@ -10,10 +11,10 @@ export default function MovieDetailsPage() {
       .then((res) => res.json())
       .then((data) => {
         setMovie(data.movie[0]);
+        setReviews(data.reviews);
       });
   }, []);
 
-  movie && console.log(movie);
   return (
     <div className="container pt-5">
       <h1>Movie details</h1>
@@ -24,6 +25,17 @@ export default function MovieDetailsPage() {
         {movie && <li>Year: {movie.year}</li>}
         {movie && <li>Abstract: {movie.abstract}</li>}
       </ul>
+
+      <h3>Reviews</h3>
+      {reviews?.map((review) => {
+        return (
+          <ul key={review.id}>
+            <li>User: {review.name}</li>
+            <li>Vote: {review.vote}</li>
+            <li>Review: {review.text}</li>
+          </ul>
+        );
+      })}
     </div>
   );
 }
