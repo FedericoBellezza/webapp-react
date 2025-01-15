@@ -18,3 +18,7 @@
   color: white;
   background-color: rgb(0, 81, 255);
 }
+
+.fa-star {
+  cursor: pointer;
+}
