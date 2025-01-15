@@ -33,15 +33,30 @@ export default function MovieDetailsPage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
+    }).then((res) => res.json);
+
+    setReviewName("");
+    setReviewVote("");
+    setReviewComment("");
+  }
+
+  // on review delete
+  function deleteReview(params) {
+    const url = `http://localhost:3000/movies/${movieId}/reviews`;
+    const reviewId = {
+      reviewId: params.target.id,
+    };
+    console.log(reviewId);
+
+    fetch(url, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reviewId),
     })
       .then((res) => res.json)
       .then((data) => {
         // aggiorna le reviews
       });
-
-    setReviewName("");
-    setReviewVote("");
-    setReviewComment("");
   }
 
   useEffect(() => {
@@ -85,12 +100,21 @@ export default function MovieDetailsPage() {
 
               return (
                 <div key={review.id}>
-                  <div className="d-flex align-items-center gap-3">
-                    <div className="avatar">{review.name[0]}</div>
-                    <div className="fs-5">{review.name}</div>
-                    <div>{stars}</div>
+                  <div className="row">
+                    <div className="d-flex align-items-center col gap-3">
+                      <div className="avatar">{review.name[0]}</div>
+                      <div className="fs-5">{review.name}</div>
+                      <div>{stars}</div>
+                    </div>
+                    <button
+                      id={review.id}
+                      onClick={deleteReview}
+                      className="btn btn-danger delete-review col-1"
+                    >
+                      X
+                    </button>
+                    <div>{review.text}</div>
                   </div>
-                  <div>{review.text}</div>
                   <hr />
                 </div>
               );

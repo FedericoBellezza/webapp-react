@@ -22,3 +22,7 @@
 .fa-star {
   cursor: pointer;
 }
+
+.delete-review {
+  text-align: center;
+}
