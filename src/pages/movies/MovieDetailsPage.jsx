@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Card from "../../components/Card";
+import Form from "../../components/Form";
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
@@ -14,7 +15,9 @@ export default function MovieDetailsPage() {
   reviewVote < 0 && setReviewVote(0);
   // on form changing
   function formChange(params) {
-    params.target.id == "inputVote" && setReviewVote(params.target.value);
+    params.target.className.includes("fa-star") &&
+      setReviewVote(params.target.id);
+
     params.target.id == "inputName" && setReviewName(params.target.value);
     params.target.id == "inputComment" && setReviewComment(params.target.value);
   }
@@ -124,12 +127,14 @@ export default function MovieDetailsPage() {
 
           {/* review form */}
           <h1>Leave a review</h1>
+          <Form />
           <form
             className="form-floating"
             onChange={formChange}
             onSubmit={formSubmit}
           >
-            <div className="row ">
+            <div className="row d-flex align-items-center align-middle ">
+              {/* review name form section */}
               <div className="col mb-4">
                 <input
                   required
@@ -141,25 +146,15 @@ export default function MovieDetailsPage() {
                   value={reviewName}
                 />
               </div>
-              <div className="col">
-                <input
-                  required
-                  onChange={formChange}
-                  min={0}
-                  max={5}
-                  type="number"
-                  className="form-control col"
-                  id="inputVote"
-                  placeholder="Vote"
-                  value={reviewVote}
-                />
 
-                {/* <i
+              {/* review star form section */}
+              <div className="col mb-4">
+                <i
                   onClick={formChange}
                   id="1"
                   className={`fa-${
                     (reviewVote >= 1 && "solid") || "regular"
-                  } fa-star fs-5`}
+                  } fa-star`}
                 ></i>
 
                 <i
@@ -167,7 +162,7 @@ export default function MovieDetailsPage() {
                   id="2"
                   className={`fa-${
                     (reviewVote >= 2 && "solid") || "regular"
-                  } fa-star fs-5`}
+                  } fa-star`}
                 ></i>
 
                 <i
@@ -175,7 +170,7 @@ export default function MovieDetailsPage() {
                   id="3"
                   className={`fa-${
                     (reviewVote >= 3 && "solid") || "regular"
-                  } fa-star fs-5`}
+                  } fa-star`}
                 ></i>
 
                 <i
@@ -183,7 +178,7 @@ export default function MovieDetailsPage() {
                   id="4"
                   className={`fa-${
                     (reviewVote >= 4 && "solid") || "regular"
-                  } fa-star fs-5`}
+                  } fa-star`}
                 ></i>
 
                 <i
@@ -191,8 +186,8 @@ export default function MovieDetailsPage() {
                   id="5"
                   className={`fa-${
                     (reviewVote >= 5 && "solid") || "regular"
-                  } fa-star fs-5`}
-                ></i> */}
+                  } fa-star`}
+                ></i>
               </div>
             </div>
             <div className="col mb-4">

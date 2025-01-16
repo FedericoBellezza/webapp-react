@@ -1,6 +1,6 @@
 .card-img-top {
   width: 100%;
-  height: 350px;
+  height: 450px;
   object-fit: cover;
 }
 
@@ -16,11 +16,12 @@
   font-style: italic;
   font-weight: 600;
   color: white;
-  background-color: rgb(0, 81, 255);
+  background-color: var(--bs-primary);
 }
 
-.fa-star {
+form .fa-star {
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .delete-review {

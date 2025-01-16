@@ -1,0 +1,6 @@
+import { createContext } from "react";
+
+// Global context assignment
+const MoviesContext = createContext();
+
+export default MoviesContext;

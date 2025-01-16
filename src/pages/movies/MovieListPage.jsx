@@ -21,9 +21,9 @@ export default function MovieListPage() {
       <h1>Movie list page</h1>
 
       <hr />
-      <div className="mt-3 row g-3">
+      <div className="mb-3 row g-3">
         {movies.map((movie) => (
-          <div key={movie.id} className="col-3">
+          <div key={movie.id} className="col-6 col-md-4 col-lg-3">
             <Card
               title={movie.title}
               subtitle={movie.director}
